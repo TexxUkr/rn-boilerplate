@@ -25,6 +25,7 @@ import {
   ListRenderItemInfo,
 } from '@shopify/flash-list';
 import styled from '@emotion/native';
+import { SearchBar } from '@/components/SearchBar/SearchBar';
 
 const Dummy = styled.View({
   height: 100,
@@ -51,14 +52,13 @@ const InputContainer = styled.View({
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: 'red',
 });
 
 interface HomeScreenProps
   extends AppStackScreenProps<typeof screenName.appStack.home> {}
 
 export const HomeScreen: FC<HomeScreenProps> = ({ navigation }) => {
-  const [artistName, setArtistName] = useState<string>('Bon Jovi');
+  const [artistName, setArtistName] = useState<string>();
   const { themed, theme } = useAppTheme();
   const { data, error, isLoading, resetQuery, useFetchOneQuery } =
     useGetTopAlbums();
@@ -84,17 +84,16 @@ export const HomeScreen: FC<HomeScreenProps> = ({ navigation }) => {
   return (
     <Container preset="fixed">
       <InputContainer>
-        <Search defaultValue="Search for by artist name" />
+        <SearchBar searchPhrase={artistName} onSubmit={setArtistName} />
       </InputContainer>
       <FlashList
         ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-        ListEmptyComponent={<Text>No albums found</Text>}
-        ListFooterComponent={<Dummy />}
-        ListHeaderComponent={
-          <View
-            style={{ height: 100, width: 100, backgroundColor: 'yellow' }}
-          />
+        ListEmptyComponent={
+          <View style={{ flex: 1, backgroundColor: 'green' }}>
+            <Text>No albums found</Text>
+          </View>
         }
+        ListFooterComponent={<Dummy />}
         showsVerticalScrollIndicator={false}
         refreshing={isLoading}
         data={data}
