@@ -15,7 +15,7 @@ export type AuthStackParamList = {
 
 export const appStack = {
   self: 'AppStack' as const,
-  welcome: 'Welcome' as const,
+  home: 'Home' as const,
   appLoading: 'AppLoading' as const,
 };
 

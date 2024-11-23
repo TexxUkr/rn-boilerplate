@@ -28,6 +28,11 @@
       "module": "commonjs"
     }
   },
-  "include": ["app.config.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "app.config.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "app/screens/app/Home.Screentsx"
+  ],
   "exclude": ["node_modules", "test/**/*"]
 }

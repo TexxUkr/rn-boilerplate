@@ -21,6 +21,7 @@ import {
   ThemeProvider as ThemeProviderEmotion,
   useTheme as useEmotionTheme,
 } from '@emotion/react';
+import { is } from 'date-fns/locale';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -50,6 +51,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
   const theme = useEmotionTheme();
+  const isAuthed = true;
+  console.log(theme);
 
   return (
     <Stack.Navigator
@@ -60,11 +63,17 @@ const RootStack = () => {
           backgroundColor: theme.colors.background,
         },
       }}>
-      <Stack.Screen
-        name={screenName.rootStack.authStack}
-        component={AuthStack}
-      />
-      <Stack.Screen name={screenName.rootStack.appStack} component={AppStack} />
+      {isAuthed ? (
+        <Stack.Screen
+          name={screenName.rootStack.appStack}
+          component={AppStack}
+        />
+      ) : (
+        <Stack.Screen
+          name={screenName.rootStack.authStack}
+          component={AuthStack}
+        />
+      )}
     </Stack.Navigator>
   );
 };

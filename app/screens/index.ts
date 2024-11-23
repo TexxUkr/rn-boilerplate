@@ -1,3 +1,3 @@
-export * from './WelcomeScreen';
-export * from './ErrorScreen/ErrorBoundary';
+export * from './app';
+export * from './auth';
 // export other screens here

@@ -24,6 +24,12 @@ const en = {
       button: "Let's try this again",
     },
   },
+  home: {
+    empty: 'No albums found',
+  },
+  album: {
+    listeners: '{{amount}} listeners',
+  },
 };
 
 export default en;
