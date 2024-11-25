@@ -23,13 +23,14 @@
     "@react-navigation/native": "^7.0.4",
     "@react-navigation/native-stack": "^7.1.1",
     "@react-navigation/stack": "^7.0.7",
+    "@reduxjs/toolkit": "^2.3.0",
     "@shopify/flash-list": "^1.7.2",
     "apisauce": "3.0.1",
     "babel-plugin-module-resolver": "^5.0.2",
     "date-fns": "^4.1.0",
     "i18next": "^23.2.3",
     "intl-pluralrules": "^2.0.1",
-    "react": "18.3.1",
+    "react": "^18.3.1",
     "react-i18next": "^15.0.1",
     "react-native": "0.76.2",
     "react-native-config": "^1.5.3",
@@ -43,7 +44,16 @@
     "react-native-skeleton-placeholder": "^5.2.4",
     "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "^15.9.0",
-    "react-native-vector-icons": "^10.2.0"
+    "react-native-vector-icons": "^10.2.0",
+    "redux": "^5.0.1",
+    "react-redux": "^9.1.2",
+    "redux-persist": "^6.0.0"
+  },
+  "overrides": {
+    "redux": "^5.0.0"
+  },
+  "resolutions": {
+    "redux": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -80,6 +90,7 @@
     "reactotron-react-js": "^3.3.11",
     "reactotron-react-native": "^5.0.5",
     "reactotron-react-native-mmkv": "^0.2.6",
+    "reactotron-redux": "^3.1.10",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
     "typescript": "5.0.4"

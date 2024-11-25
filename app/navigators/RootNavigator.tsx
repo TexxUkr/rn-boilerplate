@@ -22,6 +22,8 @@ import {
   useTheme as useEmotionTheme,
 } from '@emotion/react';
 
+import { useUserLoggedInSelector } from '@/services/store/user/hooks';
+
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.

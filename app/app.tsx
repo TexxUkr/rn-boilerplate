@@ -17,6 +17,9 @@ if (__DEV__) {
   require('./devtools/ReactotronConfig.ts');
 }
 
+import { Provider } from 'react-redux';
+import { store } from './services/store';
+
 import './utils/gestureHandler';
 import { initI18n } from './i18n';
 import './utils/ignoreWarnings';
@@ -82,10 +85,12 @@ function App(props: AppProps) {
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <ErrorBoundary catchErrors={Config.catchErrors}>
         <KeyboardProvider>
-          <RootNavigator
-            initialState={initialNavigationState}
-            onStateChange={onNavigationStateChange}
-          />
+          <Provider store={store}>
+            <RootNavigator
+              initialState={initialNavigationState}
+              onStateChange={onNavigationStateChange}
+            />
+          </Provider>
         </KeyboardProvider>
       </ErrorBoundary>
     </SafeAreaProvider>

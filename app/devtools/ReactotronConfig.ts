@@ -4,6 +4,7 @@
  * @see https://github.com/infinitered/reactotron
  */
 import { Platform, NativeModules } from 'react-native';
+import { reactotronRedux } from 'reactotron-redux';
 
 import { ArgType } from 'reactotron-core-client';
 import mmkvPlugin from 'reactotron-react-native-mmkv';
@@ -22,6 +23,7 @@ const reactotron = Reactotron.configure({
   },
 });
 
+reactotron.use(reactotronRedux());
 reactotron.use(mmkvPlugin<ReactotronReactNative>({ storage }));
 
 if (Platform.OS !== 'web') {
@@ -137,3 +139,4 @@ declare global {
  * Now that we've setup all our Reactotron configuration, let's connect!
  */
 reactotron.connect();
+export { reactotron };

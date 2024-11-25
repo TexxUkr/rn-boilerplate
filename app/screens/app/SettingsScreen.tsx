@@ -23,10 +23,7 @@ interface SettingScreenProps
     typeof screenName.appDrawerStack.settings
   > {}
 
-export const SettingsScreen: FC<SettingScreenProps> = ({
-  navigation,
-  route,
-}) => {
+export const SettingsScreen: FC<SettingScreenProps> = () => {
   const { setThemeContextOverride, themeContext } = useAppTheme();
   return (
     <Container preset="scroll" unsafe>

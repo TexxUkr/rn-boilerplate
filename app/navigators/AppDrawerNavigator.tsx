@@ -11,13 +11,16 @@ import AppNavigator from './AppNavigator';
 import { Text } from '@/components';
 import { SettingsScreen } from '@/screens';
 import styled from '@emotion/native';
+import { useDispatch } from 'react-redux';
+import { userActions } from '@/services/store/user/userActions';
 
 export type AppDrawerStackScreenProps<T extends keyof AppDrawerStackParamList> =
   DrawerScreenProps<AppDrawerStackParamList, T>;
 
 const CustomDrawerContent = (props: DrawerContentComponentProps) => {
+  const dispatch = useDispatch();
   const handleLogout = () => {
-    props.navigation.navigate(screenName.authStack.self);
+    dispatch(userActions.userLoggedOut());
   };
 
   return (

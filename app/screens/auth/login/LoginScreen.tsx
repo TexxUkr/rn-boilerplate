@@ -6,15 +6,18 @@ import { AppleButton } from '@invertase/react-native-apple-authentication';
 import styled from '@emotion/native';
 import { delay } from '@/utils/delay';
 import { ActivityIndicator } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { userActions } from '@/services/store/user/userActions';
 
 interface LoginScreenProps extends AuthStackScreenProps<'Login'> {}
 
 export const LoginScreen: FC<LoginScreenProps> = () => {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const signInHandler = useCallback(async () => {
     setIsLoading(true);
     await delay(1000);
-    setIsLoading(false);
+    dispatch(userActions.userLoggedIn());
   }, []);
   return (
     <Container preset="fixed">
