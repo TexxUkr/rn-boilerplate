@@ -29,9 +29,6 @@ export const AlbumScreen: FC<AlbumScreenProps> = ({
   navigation,
   route: { params },
 }) => {
-  console.log('params', params);
-
-  const { themed, theme } = useAppTheme();
   const { data, error, isLoading, resetQuery, useFetchOneQuery } =
     useGetAlbumInfo();
 
