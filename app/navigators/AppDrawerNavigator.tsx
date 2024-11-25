@@ -5,11 +5,12 @@ import {
   DrawerContentComponentProps,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import { StyleSheet, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
 import { screenName, AppDrawerStackParamList } from './screenName';
 import AppNavigator from './AppNavigator';
 import { Text } from '@/components';
 import { SettingsScreen } from '@/screens';
+import styled from '@emotion/native';
 
 export type AppDrawerStackScreenProps<T extends keyof AppDrawerStackParamList> =
   DrawerScreenProps<AppDrawerStackParamList, T>;
@@ -22,9 +23,9 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
-      <Pressable style={styles.logoutButton} onPress={handleLogout}>
-        <Text style={styles.logoutText}>Logout</Text>
-      </Pressable>
+      <LogoutButton onPress={handleLogout}>
+        <Text weight="medium" tx="settings:logout" />
+      </LogoutButton>
     </DrawerContentScrollView>
   );
 };
@@ -45,19 +46,16 @@ export const AppDrawerNavigator = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  logoutButton: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: '#ff6666',
-    borderRadius: 5,
+const LogoutButton = styled(Pressable)(
+  {
     alignItems: 'center',
   },
-  logoutText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
+  ({ theme }) => ({
+    marginTop: theme.spacing.md,
+    padding: theme.spacing.sm,
+    backgroundColor: theme.colors.palette.accent300,
+    borderRadius: theme.spacing.sm,
+  }),
+);
 
 export default AppDrawerNavigator;

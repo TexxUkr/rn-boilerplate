@@ -1,31 +1,34 @@
-import { Translations } from './en';
-
-const es: Translations = {
+const en = {
   common: {
-    ok: 'OK',
-    cancel: 'Cancelar',
-    back: 'Volver',
-  },
-  welcomeScreen: {
-    postscript:
-      'psst — Esto probablemente no es cómo se va a ver tu app. (A menos que tu diseñador te haya enviado estas pantallas, y en ese caso, ¡lánzalas en producción!)',
-    readyForLaunch: 'Tu app, casi lista para su lanzamiento',
-    exciting: '(¡ohh, esto es emocionante!)',
+    ok: 'OK!',
+    cancel: 'Cancel',
+    back: 'Back',
+    retry: 'Try again',
   },
   errorScreen: {
-    title: '¡Algo salió mal!',
+    title: 'Oops! Something went wrong!',
     friendlySubtitle:
-      'Esta es la pantalla que verán tus usuarios en producción cuando haya un error. Vas a querer personalizar este mensaje (que está ubicado en `app/i18n/es.ts`) y probablemente también su diseño (`app/screens/ErrorScreen`). Si quieres eliminarlo completamente, revisa `app/app.tsx` y el componente <ErrorBoundary>.',
-    reset: 'REINICIA LA APP',
+      "This is the screen that your users will see in production when an error is thrown. You'll want to customize this message (located in `app/i18n/en.ts`) and probably the layout as well (`app/screens/ErrorScreen`). If you want to remove this entirely, check `app/app.tsx` for the <ErrorBoundary> component.",
+    reset: 'RESET APP',
   },
   emptyStateComponent: {
     generic: {
-      heading: 'Muy vacío... muy triste',
+      heading: 'So empty... so sad',
       content:
-        'No se han encontrado datos por el momento. Intenta darle clic en el botón para refrescar o recargar la app.',
-      button: 'Intentemos de nuevo',
+        'No data found yet. Try clicking the button to refresh or reload the app.',
+      button: "Let's try this again",
     },
+  },
+  settings: {
+    darkTheme: 'Dark Theme',
+  },
+  home: {
+    empty: 'No albums found. Try search again.',
+  },
+  album: {
+    listeners: '{{amount}} listeners',
   },
 };
 
-export default es;
+export default en;
+export type Translations = typeof en;

@@ -50,7 +50,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
   const theme = useEmotionTheme();
-  const isAuthed = false;
+  const isAuthed = true;
 
   return (
     <Stack.Navigator
