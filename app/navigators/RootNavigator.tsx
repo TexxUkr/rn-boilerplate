@@ -12,7 +12,7 @@ import {
 import Config from '../config';
 import { navigationRef, useBackButtonHandler } from './navigationUtilities';
 import AuthStack from './AuthNavigator';
-import AppStack from './AppNavigator';
+import AppDrawerNavigator from './AppDrawerNavigator';
 import { screenName, RootStackParamList } from './screenName';
 import { StatusBar } from 'react-native';
 import { useThemeProvider, themeContextToTheme } from '@/utils/useAppTheme';
@@ -50,7 +50,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
   const theme = useEmotionTheme();
-  const isAuthed = true;
+  const isAuthed = false;
 
   return (
     <Stack.Navigator
@@ -64,7 +64,7 @@ const RootStack = () => {
       {isAuthed ? (
         <Stack.Screen
           name={screenName.rootStack.appDrawerStack}
-          component={AppStack}
+          component={AppDrawerNavigator}
         />
       ) : (
         <Stack.Screen
@@ -88,8 +88,6 @@ export const RootNavigator = (props: NavigationProps) => {
   } = useThemeProvider();
 
   useBackButtonHandler(routeName => exitRoutes.includes(routeName));
-
-  console.log('themeScheme', themeScheme);
 
   return (
     <ThemeProvider value={{ themeScheme, setThemeContextOverride }}>

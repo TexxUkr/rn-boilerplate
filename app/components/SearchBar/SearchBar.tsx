@@ -25,6 +25,7 @@ const TextInputFrom = styled.TextInput(
   },
   ({ theme }) => ({
     marginLeft: theme.spacing.sm,
+    color: theme.colors.text,
   }),
 );
 
@@ -97,11 +98,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     <Container onPress={() => inputRef.current?.focus()}>
       <SearchBarContainer isFocused={isFocused}>
         {/* search Icon */}
-        <Icon
-          name="search"
-          size={20}
-          color={theme.colors.palette.secondary500}
-        />
+        <Icon name="search" size={20} color={theme.colors.text} />
         {/* Input field */}
         <TextInputFrom
           ref={inputRef}
@@ -110,7 +107,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           onFocus={onFocusHandler}
           onBlur={onBlurHandler}
           placeholder={placeholder}
-          placeholderTextColor={theme.colors.palette.neutral600}
+          placeholderTextColor={theme.colors.text}
           onSubmitEditing={onSubmitHandler}
           returnKeyType={'go'}
         />
@@ -119,7 +116,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             <Icon
               name="close"
               size={20}
-              color="black"
+              color={theme.colors.text}
               onPress={() => {
                 if (isFocused) setSearchPhraseState('');
               }}

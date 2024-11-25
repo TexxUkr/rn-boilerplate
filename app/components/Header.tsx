@@ -341,7 +341,6 @@ const $title: TextStyle = {
 
 const $subtitle: ThemedStyle<TextStyle> = ({ colors }) => ({
   textAlign: 'center',
-  color: colors.palette.overlay50,
 });
 
 const $actionTextContainer: ThemedStyle<ViewStyle> = ({ spacing }) => ({

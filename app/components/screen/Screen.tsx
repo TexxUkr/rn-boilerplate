@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScreenProps } from './Screen.props';
 import { isNonScrolling, offsets, presets } from './Screen.presets';
 import styled from '@emotion/native';
-import { useThemeProvider } from '@/utils/useAppTheme';
+import { useAppTheme } from '@/utils/useAppTheme';
 
 const isIos = Platform.OS === 'ios';
 
@@ -26,14 +26,17 @@ function ScreenWithoutScrolling(props: ScreenProps) {
     ? { backgroundColor: props.backgroundColor }
     : {};
   const insetStyle = { paddingTop: props.unsafe ? 0 : insets.top };
-  const { themeScheme } = useThemeProvider();
+  const { themeContext } = useAppTheme();
   return (
     <Container
       style={[preset.outer, backgroundStyle]}
       behavior={isIos ? 'padding' : undefined}
       keyboardVerticalOffset={offsets[props.keyboardOffset || 'none']}>
       <StatusBar
-        barStyle={themeScheme === 'dark' ? 'light-content' : 'dark-content'}
+        barStyle={
+          props.statusBar ||
+          (themeContext === 'dark' ? 'light-content' : 'dark-content')
+        }
       />
       <View style={[preset.inner, style, insetStyle]}>{props.children}</View>
     </Container>
@@ -48,13 +51,18 @@ function ScreenWithScrolling(props: ScreenProps) {
     ? { backgroundColor: props.backgroundColor }
     : {};
   const insetStyle = { paddingTop: props.unsafe ? 0 : insets.top };
-
+  const { themeContext } = useAppTheme();
   return (
     <Container
       style={[preset.outer, backgroundStyle]}
       behavior={isIos ? 'padding' : undefined}
       keyboardVerticalOffset={offsets[props.keyboardOffset || 'none']}>
-      <StatusBar barStyle={props.statusBar || 'light-content'} />
+      <StatusBar
+        barStyle={
+          props.statusBar ||
+          (themeContext === 'dark' ? 'light-content' : 'dark-content')
+        }
+      />
       <View style={[preset.outer, backgroundStyle, insetStyle]}>
         <ScrollView
           style={[preset.outer, backgroundStyle]}

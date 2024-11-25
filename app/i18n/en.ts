@@ -1,3 +1,6 @@
+import { darkTheme } from '@/theme';
+import { set } from 'date-fns';
+
 const en = {
   common: {
     ok: 'OK!',
@@ -24,6 +27,9 @@ const en = {
         'No data found yet. Try clicking the button to refresh or reload the app.',
       button: "Let's try this again",
     },
+  },
+  settings: {
+    darkTheme: 'Dark Theme',
   },
   home: {
     empty: 'No albums found. Try search again.',
