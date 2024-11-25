@@ -125,6 +125,7 @@ export const HomeScreen: FC<HomeScreenProps> = ({ navigation }) => {
       {artistName && (
         <ArtistBioFABContainer>
           <Icon
+            backgroundColor={'transparent'}
             name="info-circle"
             size={80}
             color={theme.colors.palette.secondary500}

@@ -13,6 +13,18 @@ export type AuthStackParamList = {
   [P in ScreenNamesAuthStack]: undefined;
 };
 
+export const appDrawerStack = {
+  self: 'appDrawerStack' as const,
+  app: 'App' as const,
+  settings: 'Settings' as const,
+};
+
+type ScreenKeysAppDrawerStack = keyof typeof appStack;
+type ScreenNamesAppDrawerStack = (typeof appStack)[ScreenKeysAppDrawerStack];
+export type AppDrawerStackParamList = {
+  [P in ScreenNamesAppDrawerStack]: undefined;
+};
+
 export const appStack = {
   self: 'AppStack' as const,
   home: 'Home' as const,
@@ -39,7 +51,7 @@ export type AppStackParamList = {
 
 export const rootStack = {
   authStack: authStack.self,
-  appStack: appStack.self,
+  appDrawerStack: appDrawerStack.self,
 };
 
 type ScreenKeysRoot = keyof typeof rootStack;
@@ -49,16 +61,19 @@ export type RootStackParamList = {
 };
 
 export type StackParamList = RootStackParamList &
+  AppDrawerStackParamList &
   AppStackParamList &
   AuthStackParamList;
 
 export type ScreenName =
   | ScreenNamesRoot
   | ScreenNamesAppStack
+  | ScreenNamesAppStack
   | ScreenNamesAuthStack;
 
 export const screenName = {
   rootStack,
+  appDrawerStack,
   appStack,
   authStack,
 };

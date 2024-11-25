@@ -63,7 +63,7 @@ const RootStack = () => {
       }}>
       {isAuthed ? (
         <Stack.Screen
-          name={screenName.rootStack.appStack}
+          name={screenName.rootStack.appDrawerStack}
           component={AppStack}
         />
       ) : (
