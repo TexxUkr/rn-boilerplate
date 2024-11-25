@@ -21,7 +21,6 @@ import {
   ThemeProvider as ThemeProviderEmotion,
   useTheme as useEmotionTheme,
 } from '@emotion/react';
-import { is } from 'date-fns/locale';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -90,6 +89,8 @@ export const RootNavigator = (props: NavigationProps) => {
 
   useBackButtonHandler(routeName => exitRoutes.includes(routeName));
 
+  console.log('themeScheme', themeScheme);
+
   return (
     <ThemeProvider value={{ themeScheme, setThemeContextOverride }}>
       <ThemeProviderEmotion theme={themeContextToTheme(themeScheme)}>
@@ -97,9 +98,13 @@ export const RootNavigator = (props: NavigationProps) => {
           ref={navigationRef}
           theme={navigationTheme}
           {...props}>
-          <StatusBar
-            barStyle={themeScheme === 'dark' ? 'light-content' : 'dark-content'}
-          />
+          {
+            <StatusBar
+              barStyle={
+                themeScheme === 'dark' ? 'light-content' : 'dark-content'
+              }
+            />
+          }
           <RootStack />
         </NavigationContainer>
       </ThemeProviderEmotion>

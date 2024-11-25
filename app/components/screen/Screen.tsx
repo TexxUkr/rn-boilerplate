@@ -10,6 +10,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScreenProps } from './Screen.props';
 import { isNonScrolling, offsets, presets } from './Screen.presets';
 import styled from '@emotion/native';
+import { useThemeProvider } from '@/utils/useAppTheme';
 
 const isIos = Platform.OS === 'ios';
 
@@ -25,13 +26,15 @@ function ScreenWithoutScrolling(props: ScreenProps) {
     ? { backgroundColor: props.backgroundColor }
     : {};
   const insetStyle = { paddingTop: props.unsafe ? 0 : insets.top };
-
+  const { themeScheme } = useThemeProvider();
   return (
     <Container
       style={[preset.outer, backgroundStyle]}
       behavior={isIos ? 'padding' : undefined}
       keyboardVerticalOffset={offsets[props.keyboardOffset || 'none']}>
-      <StatusBar barStyle={props.statusBar || 'light-content'} />
+      <StatusBar
+        barStyle={themeScheme === 'dark' ? 'light-content' : 'dark-content'}
+      />
       <View style={[preset.inner, style, insetStyle]}>{props.children}</View>
     </Container>
   );

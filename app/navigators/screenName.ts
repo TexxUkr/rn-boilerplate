@@ -24,9 +24,17 @@ export const appStack = {
 type ScreenKeysAppStack = keyof typeof appStack;
 type ScreenNamesAppStack = (typeof appStack)[ScreenKeysAppStack];
 export type AppStackParamList = {
-  [P in ScreenNamesAppStack]:
-    | undefined
-    | { albumMbid?: string; albumName?: string; artistName?: string };
+  [appStack.album]: {
+    albumMbid: string;
+    albumName: string;
+    artistName: string;
+  };
+  [appStack.artist]: {
+    artistName: string;
+  };
+  [appStack.home]: undefined;
+  [appStack.appLoading]: undefined;
+  [appStack.self]: undefined;
 };
 
 export const rootStack = {
