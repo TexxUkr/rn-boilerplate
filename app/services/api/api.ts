@@ -44,7 +44,7 @@ export class LastFmApi {
   }
 
   /**
-   * Gets a list of .
+   * Gets a list of albums .
    */
   async getTopAlbums(
     artist: string,
@@ -71,6 +71,78 @@ export class LastFmApi {
     try {
       const rawData = response.data;
 
+      return { kind: 'ok', data: rawData };
+    } catch (e) {
+      if (__DEV__ && e instanceof Error) {
+        console.error(`Bad data: ${e.message}\n${response.data}`, e.stack);
+      }
+      return { kind: 'bad-data' };
+    }
+  }
+
+  /**
+   * Gets album info .
+   */
+  async getAlbumInfo(
+    mbid: string,
+  ): Promise<{ kind: 'ok'; data?: AlbumInfo } | GeneralApiProblem> {
+    // make the api call
+    await delay(5000);
+    const response: ApiResponse<AlbumInfoResponse> = await this.apisauce.get(
+      `${this.version}`,
+      {
+        method: 'album.getinfo',
+        api_key: this.config.apiKey,
+        format: 'json',
+        mbid,
+      },
+    );
+
+    // the typical ways to die when calling an api
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response);
+      if (problem) return problem;
+    }
+
+    // transform the data into the format we are expecting
+    try {
+      const rawData = response.data?.album;
+      return { kind: 'ok', data: rawData };
+    } catch (e) {
+      if (__DEV__ && e instanceof Error) {
+        console.error(`Bad data: ${e.message}\n${response.data}`, e.stack);
+      }
+      return { kind: 'bad-data' };
+    }
+  }
+
+  /**
+   * Gets artist info .
+   */
+  async getArtistInfo(
+    name: string,
+  ): Promise<{ kind: 'ok'; data?: ArtistInfo } | GeneralApiProblem> {
+    // make the api call
+    await delay(5000);
+    const response: ApiResponse<ArtistResponse> = await this.apisauce.get(
+      `${this.version}`,
+      {
+        method: 'artist.getinfo',
+        api_key: this.config.apiKey,
+        format: 'json',
+        artist: name,
+      },
+    );
+
+    // the typical ways to die when calling an api
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response);
+      if (problem) return problem;
+    }
+
+    // transform the data into the format we are expecting
+    try {
+      const rawData = response.data?.artist;
       return { kind: 'ok', data: rawData };
     } catch (e) {
       if (__DEV__ && e instanceof Error) {

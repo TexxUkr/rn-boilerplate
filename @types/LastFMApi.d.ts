@@ -4,7 +4,7 @@ type Artist = {
   url: string;
 };
 
-type AlbumResponse = {
+type Album = {
   name: string;
   playcount: number;
   mbid: string;
@@ -15,7 +15,7 @@ type AlbumResponse = {
 
 type TopAlbumsResponse = {
   topalbums: {
-    album: AlbumResponse[];
+    album: Album[];
   };
   '@attr': {
     artist: string;
@@ -50,6 +50,10 @@ type Track = {
   artist: Artist;
 };
 
+type AlbumInfoResponse = {
+  album: AlbumInfo;
+};
+
 type AlbumInfo = {
   artist: string;
   mbid: string;
@@ -64,5 +68,64 @@ type AlbumInfo = {
     summary: string;
     content: string;
   };
-  tracks: Track[];
+  tracks: {
+    track: Track[];
+  };
+};
+
+type ArtistImage = {
+  '#text': string;
+  size: 'small' | 'medium' | 'large' | 'extralarge' | 'mega' | '';
+};
+
+type SimilarArtist = {
+  name: string;
+  url: string;
+  image: ArtistImage[];
+};
+
+type Tag = {
+  name: string;
+  url: string;
+};
+
+type BioLink = {
+  '#text': string;
+  rel: string;
+  href: string;
+};
+
+type Bio = {
+  links: {
+    link: BioLink;
+  };
+  published: string;
+  summary: string;
+  content: string;
+};
+
+type Stats = {
+  listeners: string;
+  playcount: string;
+};
+
+type ArtistInfo = {
+  name: string;
+  mbid: string;
+  url: string;
+  image: ArtistImage[];
+  streamable: string;
+  ontour: string;
+  stats: Stats;
+  similar: {
+    artist: SimilarArtist[];
+  };
+  tags: {
+    tag: Tag[];
+  };
+  bio: Bio;
+};
+
+type ArtistResponse = {
+  artist: ArtistInfo;
 };

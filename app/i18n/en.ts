@@ -3,6 +3,7 @@ const en = {
     ok: 'OK!',
     cancel: 'Cancel',
     back: 'Back',
+    retry: 'Try again',
   },
   welcomeScreen: {
     postscript:
@@ -11,7 +12,7 @@ const en = {
     exciting: '(ohh, this is exciting!)',
   },
   errorScreen: {
-    title: 'Something went wrong!',
+    title: 'Oops! Something went wrong!',
     friendlySubtitle:
       "This is the screen that your users will see in production when an error is thrown. You'll want to customize this message (located in `app/i18n/en.ts`) and probably the layout as well (`app/screens/ErrorScreen`). If you want to remove this entirely, check `app/app.tsx` for the <ErrorBoundary> component.",
     reset: 'RESET APP',
@@ -25,7 +26,7 @@ const en = {
     },
   },
   home: {
-    empty: 'No albums found',
+    empty: 'No albums found. Try search again.',
   },
   album: {
     listeners: '{{amount}} listeners',

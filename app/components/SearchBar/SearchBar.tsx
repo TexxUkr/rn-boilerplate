@@ -50,13 +50,16 @@ const CloseIconContainer = styled.View({
   paddingRight: 20,
 });
 
-export const SearchBar: React.FC<{
-  focusHandler: (isFocused: boolean) => {};
+export type SearchBarProps = {
+  focusHandler?: (isFocused: boolean) => {};
   searchPhrase?: string;
   setSearchPhrase?: (searchPhrase: string) => void;
   placeholder?: string;
   onSubmit?: (searchPhrase?: string) => void;
-}> = ({
+  dummy?: boolean;
+};
+
+export const SearchBar: React.FC<SearchBarProps> = ({
   searchPhrase,
   setSearchPhrase = () => {},
   focusHandler = () => {},
@@ -94,7 +97,11 @@ export const SearchBar: React.FC<{
     <Container onPress={() => inputRef.current?.focus()}>
       <SearchBarContainer isFocused={isFocused}>
         {/* search Icon */}
-        <Icon name="search" size={20} color="black" />
+        <Icon
+          name="search"
+          size={20}
+          color={theme.colors.palette.secondary500}
+        />
         {/* Input field */}
         <TextInputFrom
           ref={inputRef}

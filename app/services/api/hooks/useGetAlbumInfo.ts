@@ -1,26 +1,26 @@
 import { lastFmApiV2 } from '../api';
 import { useState, useCallback } from 'react';
 
-export const useGetTopAlbums = () => {
-  const [data, setData] = useState<Album[]>([]);
-  const [error, setError] = useState<any>(null);
+export const useGetAlbumInfo = () => {
+  const [data, setData] = useState<AlbumInfo | undefined>();
+  const [error, setError] = useState<any>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const resetQuery = useCallback(() => {
-    setData([]);
-    setError(null);
+    setData(undefined);
+    setError(undefined);
     setIsLoading(false);
   }, []);
 
   const useFetchOneQuery = useCallback(
-    async (artistName: string) => {
+    async (mbid: string) => {
       setIsLoading(true);
       try {
-        const response = await lastFmApiV2.getTopAlbums(artistName);
+        const response = await lastFmApiV2.getAlbumInfo(mbid);
         if (response.kind !== 'ok') {
           throw new Error(response.kind);
         }
-        setData(response.data?.topalbums.album || []);
+        setData(response.data);
         setError(null);
       } catch (error) {
         setError(error);

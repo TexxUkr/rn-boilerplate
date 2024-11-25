@@ -17,12 +17,16 @@ export const appStack = {
   self: 'AppStack' as const,
   home: 'Home' as const,
   appLoading: 'AppLoading' as const,
+  album: 'Album' as const,
+  artist: 'Artist' as const,
 };
 
 type ScreenKeysAppStack = keyof typeof appStack;
 type ScreenNamesAppStack = (typeof appStack)[ScreenKeysAppStack];
 export type AppStackParamList = {
-  [P in ScreenNamesAppStack]: undefined;
+  [P in ScreenNamesAppStack]:
+    | undefined
+    | { albumMbid?: string; albumName?: string; artistName?: string };
 };
 
 export const rootStack = {
